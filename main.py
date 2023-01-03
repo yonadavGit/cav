@@ -46,8 +46,8 @@ def table_book_chapter(table, book_no, chapter_no):
     # Query the MySQL database and generate the HTML table
     cursor.execute('SELECT * FROM {} WHERE b = {} AND c = {} AND t IS NOT NULL;'.format(table, book_no, chapter_no))
     rows = cursor.fetchall()
-
-    return render_template('/table_book.html', title='My Page', rows=rows)
+    book_title = bookId_to_title(book_no)
+    return render_template('/table_book.html', title='My Page', rows=rows, book_title=book_title)
 
 
 @app.route('/table/<table>/<book_no>/<chapter_no>/<verse_no>')
@@ -55,8 +55,8 @@ def table_book_chapter_verse(table, book_no, chapter_no, verse_no):
     # Query the MySQL database and generate the HTML table
     cursor.execute('SELECT * FROM {} WHERE b = {} AND c = {} AND v = {} AND t IS NOT NULL;'.format(table, book_no, chapter_no, verse_no))
     rows = cursor.fetchall()
-
-    return render_template('/table_book.html', title='My Page', rows=rows)
+    book_title = bookId_to_title(book_no)
+    return render_template('/table_book.html', title='My Page', rows=rows, book_title=book_title)
 
 
 # @app.route('/table/<table>/<id>')
