@@ -1,0 +1,45 @@
+
+up-container {
+
+}
+
+.bg-cover {
+    background-size: cover !important;
+}
+
+#header-image {
+    background-image: url('Bible-Background-2.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: contain;
+    position: relative;
+}
+
+#logo-image {
+    image: url('logo.png');
+    position: absolute; /* The child element is positioned absolutely */
+    z-index: 1;
+}
+
+body {
+    min-height: 100vh;
+}
+
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+up-container p {
+    background-color: rgb(146, 46, 35);
+    color: white;
+    text-align: left;
+}
+
+.styled-table td {
+    padding: 12px 15px;
+}
