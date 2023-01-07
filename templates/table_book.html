@@ -10,8 +10,8 @@
 </head>
 <body>
 <header>
-    <div id = "header-image" class="jumbotron bg-cover text-white">
-        <div class="container py-5 text-center">
+    <div id="header-image" class="jumbotron bg-cover text-white">
+        <div class="container py-5 text-center header-text">
             <h1 class="display-4 font-weight-bold">Converse about the Verse</h1>
         </div>
     </div>
@@ -31,21 +31,22 @@
             {% endfor %}
         </select>
     </form>
-    <p>
+    <div id="book-title">
         {{ book_title }}
-    </p>
+    </div>
 </up-container>
 <down-container>
     <table class="table table-hover styled-table">
         {% for row in rows %}
-        {% if row[3] == 1 %}
-        <tr>
+        {% if row[3] == 1 or len==1 %}
+
+        <tr id="chapter-title">
             <td> Chapter</td>
             <td> {{ row[2] }}</td>
         </tr>
         {% endif %}
         <tr>
-            <td>{{ row[3] }}</td>
+            <td id="verse-num">{{ row[3] }}</td>
             <td>{{ row[4] }}</td>
         </tr>
         {% endfor %}

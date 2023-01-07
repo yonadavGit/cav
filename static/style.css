@@ -1,18 +1,37 @@
 
-up-container {
-
+down-container {
+    margin: 0;
 }
 
-.bg-cover {
-    background-size: cover !important;
+#chapter-title {
+    text-align: left;
+    font-size: 1.2em;
+    color: black;
+    font-family: Assistant,sans-serif;
+        background-color: #dad2c2;
+    font-weight: bold;
+    color: c;
 }
 
 #header-image {
-    background-image: url('Bible-Background-2.jpg');
+    background-image: url('header_image.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-size: contain;
+    background-size: cover;
     position: relative;
+}
+
+.header-text {
+    font-size: 120px;
+    text-transform: uppercase;
+    font-family: 'Gambetta', serif;
+    letter-spacing: -3px;
+    transition: 700ms ease;
+    font-variation-settings: "wght" 311;
+    margin-bottom: 0.8rem;
+    color: #8B4513;
+    outline: none;
+    text-align: center;
 }
 
 #logo-image {
@@ -23,23 +42,35 @@ up-container {
 
 body {
     min-height: 100vh;
+
 }
 
 .styled-table {
     border-collapse: collapse;
     margin: 25px 0;
     font-size: 0.9em;
-    font-family: sans-serif;
+    font-family: Assistant,sans-serif;
     min-width: 400px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    background-color: #f5efe3;
 }
 
-up-container p {
-    background-color: rgb(146, 46, 35);
+#book-title {
+    text-align: center;
+    font-size: 1.5em;
     color: white;
-    text-align: left;
+    font-family: "Lucida Calligraphy", sans-serif;
+    background-image: linear-gradient(to bottom, #8B4513, rgb(191, 145, 105));
+}
+
+up-container {
+
 }
 
 .styled-table td {
     padding: 12px 15px;
+}
+
+#verse-num{
+    background-color: #dad2c2;
 }

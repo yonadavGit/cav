@@ -25,7 +25,6 @@ def get_all_book_names():
     cursor.execute('SELECT n FROM key_english WHERE n IS NOT NULL;'.format())
     q = cursor.fetchall()
     book_names = [book[0] for book in q]
-    print(book_names)
     return book_names
 
 all_book_titles = get_all_book_names()
@@ -54,7 +53,8 @@ def table_book_chapter_verse(table, book_no, chapter_no, verse_no):
     cursor.execute('SELECT * FROM {} WHERE b = {} AND c = {} AND v = {} AND t IS NOT NULL;'.format(table, book_no, chapter_no, verse_no))
     rows = cursor.fetchall()
     book_title = bookId_to_title(book_no)
-    return render_template('/table_book.html', title='My Page', rows=rows, book_title=book_title)
+    rows_len=len(rows)
+    return render_template('/table_book.html', title='My Page', rows=rows, book_title=book_title, len=rows_len)
 
 
 # @app.route('/table/<table>/<id>')
