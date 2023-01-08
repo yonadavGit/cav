@@ -1,16 +1,51 @@
 
+up-container {
+
+}
+
 down-container {
-    margin: 0;
+
+}
+
+header {
+
+}
+
+#book-title {
+    text-align: center;
+    font-size: 1.5em;
+    color: white;
+    font-family: "Lucida Calligraphy", sans-serif;
+    background-image: linear-gradient(to bottom, #9b653d, rgb(191, 145, 105));
+}
+
+#chapter-num {
+    text-align: left;
 }
 
 #chapter-title {
-    text-align: left;
-    font-size: 1.2em;
+    text-align: center;
+    font-size: 1.23em;
     color: black;
-    font-family: Assistant,sans-serif;
-        background-color: #dad2c2;
+    font-family: Assistant, sans-serif;
+    background-color: #dad2c2;
     font-weight: bold;
 }
+
+up-container nav {
+    color: white;
+    font-family: sans-serif;
+    background-image: linear-gradient(to bottom, #8B4513, #9b653d);
+}
+
+
+form {
+    display: inline-block;
+    margin-left: 20px;
+    font-size: 1.3em;
+
+}
+
 
 #header-image {
     background-image: url('header_image.jpg');
@@ -18,6 +53,7 @@ down-container {
     background-attachment: fixed;
     background-size: cover;
     position: relative;
+    overflow: hidden;
 }
 
 .header-text {
@@ -41,35 +77,29 @@ down-container {
 
 body {
     min-height: 100vh;
+}
 
+#bg-color {
+    background-color: #f5efe3;
 }
 
 .styled-table {
     border-collapse: collapse;
     margin: 25px 0;
     font-size: 0.9em;
-    font-family: Assistant,sans-serif;
+    font-family: Assistant, sans-serif;
     min-width: 400px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     background-color: #f5efe3;
+    margin-top: auto;
 }
 
-#book-title {
-    text-align: center;
-    font-size: 1.5em;
-    color: white;
-    font-family: "Lucida Calligraphy", sans-serif;
-    background-image: linear-gradient(to bottom, #8B4513, rgb(191, 145, 105));
-}
-
-up-container {
-
-}
 
 .styled-table td {
     padding: 12px 15px;
 }
 
-#verse-num{
+#verse-num {
     background-color: #dad2c2;
+    text-align: center;
 }
