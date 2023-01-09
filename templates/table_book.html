@@ -17,47 +17,41 @@
     </div>
 </header>
 <up-container>
-<nav class="navbar navbar-light bg-light">
+    <nav id="navbar-selection" class="navbar navbar-light bg-light">
         <form>
-            <label>Translation:</label><br>
-            <select class="custom-select custom-select-lg mb-3">
-                <option selected>Open this select menu</option>
-                {% for book in all_book_titles %}
-                <option href="/table/t_kjv/1" value="{{ book }}">{{ book }}</option>
-                {% endfor %}
-            </select>
+            <label>Translation:
+                <select class="custom-select custom-select-lg mb-3">
+                    <option selected>Select bible translation</option>
+                    {% for trans in all_translations_names %}
+                    <option value="{{ trans }}">{{ trans }}</option>
+                    {% endfor %}
+                </select>
+            </label>
         </form>
 
         <form>
-            <label>Book:</label><br>
-            <select class="custom-select custom-select-lg mb-3">
-                <option selected>Open this select menu</option>
-                {% for book in all_book_titles %}
-                <option href="/table/t_kjv/1" value="{{ book }}">{{ book }}</option>
-                {% endfor %}
-            </select>
+            <label>Book:
+                <select class="custom-select custom-select-lg mb-3">
+                    <option selected>Select book name</option>
+                    {% for book in all_book_titles %}
+                    <option value="{{ book }}">{{ book }}</option>
+                    {% endfor %}
+                </select>
+            </label>
         </form>
 
         <form>
-            <label>Chapter:</label><br>
-            <select class="custom-select custom-select-lg mb-3">
-                <option selected>Open this select menu</option>
-                {% for book in all_book_titles %}
-                <option href="/table/t_kjv/1" value="{{ book }}">{{ book }}</option>
-                {% endfor %}
-            </select>
+            <label>Chapter:
+                <input type="text" placeholder="chapter number">
+            </label>
         </form>
 
         <form>
-            <label>Verse:</label><br>
-            <select class="custom-select custom-select-lg mb-3">
-                <option selected>Open this select menu</option>
-                {% for book in all_book_titles %}
-                <option href="/table/t_kjv/1" value="{{ book }}">{{ book }}</option>
-                {% endfor %}
-            </select>
+            <label>Verse:
+                <input type="text" placeholder="verse number">
+            </label>
         </form>
-</nav>
+    </nav>
     <div id="book-title">
         {{ book_title }}
     </div>
