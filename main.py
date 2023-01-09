@@ -38,6 +38,7 @@ def get_all_book_names():
 
 all_book_titles = get_all_book_names()
 
+
 @app.route('/table/<table>/<book_no>')
 def table_book(table, book_no):
     cursor.execute('SELECT * FROM {} WHERE b = {} AND t IS NOT NULL;'.format(table, book_no))
@@ -68,20 +69,6 @@ def table_book_chapter_verse(table, book_no, chapter_no, verse_no):
     rows_len = len(rows)
     return render_template('/table_book.html', title=page_title, rows=rows, book_title=book_title,
                            all_book_titles=all_book_titles, all_translations_names=all_translations_names, len=rows_len)
-
-
-# @app.route('/table/<table>/<id>')
-# def row(table, id):
-#     # Query the MySQL database and generate the HTML table
-#     cursor.execute('SELECT * FROM {} WHERE b = {} AND t IS NOT NULL;'.format(table, id))
-#     row = cursor.fetchone()
-#     html = '<table>'
-#     html += '<tr>'
-#     for col in row:
-#         html += '<td>{}</td>'.format(col)
-#     html += '</tr>'
-#     html += '</table>'
-#     return html
 
 
 def book_id_to_title(bookId):

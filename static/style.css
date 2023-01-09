@@ -11,9 +11,9 @@ header {
 
 }
 
-.input-box{
-    height:33px;
-    width:110px;
+.input-box {
+    height: 33px;
+    width: 110px;
 }
 
 #book-title {
@@ -24,7 +24,7 @@ header {
     background-image: linear-gradient(to bottom, #9b653d, rgb(191, 145, 105));
 }
 
-.menu{
+.menu {
 
 }
 
@@ -41,16 +41,16 @@ header {
     font-weight: bold;
 }
 
-form label{
+form label {
     margin-right: 10px;
 }
 
-#navbar-selection{
+#navbar-selection {
     color: white;
     background-image: linear-gradient(to bottom, #8B4513, #9b653d);
-    justify-content: center; !important;
+    justify-content: center;
+!important;
 }
-
 
 
 form {
@@ -62,15 +62,15 @@ form {
     height: max-content;
 }
 
-.navbar label{
-    margin:auto;
+.navbar label {
+    margin: auto;
 }
 
 #search-btn {
     color: black;
     float: right;
-    height:33px;
-    width:33px;
+    height: 33px;
+    width: 33px;
     border-radius: 50%;
     background: white;
     display: flex;
