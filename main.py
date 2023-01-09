@@ -5,6 +5,8 @@ import socketserver
 from flask import Flask, render_template
 import jinja2
 
+page_title = "Converse about the Verse"
+
 # Connect to the MySQL database
 cnx = mysql.connector.connect(user='root', password='root',
                               host='localhost', database='converseabouttheverse')
@@ -15,12 +17,7 @@ app = Flask(__name__, template_folder='templates')
 
 
 # Define the request handlers
-# @app.route('/table/<table>')
-# def table(table):
-#     cursor.execute('SELECT * FROM {} WHERE AND t IS NOT NULL;'.format(table))
-#     rows = cursor.fetchall()
-#
-#     return render_template('/table_book.html', title='My Page', rows=rows)
+
 
 def get_all_translations_names():
     cursor.execute('SELECT version FROM bible_version_key WHERE version IS NOT NULL;'.format())
@@ -41,13 +38,12 @@ def get_all_book_names():
 
 all_book_titles = get_all_book_names()
 
-
 @app.route('/table/<table>/<book_no>')
 def table_book(table, book_no):
     cursor.execute('SELECT * FROM {} WHERE b = {} AND t IS NOT NULL;'.format(table, book_no))
     rows = cursor.fetchall()
     book_title = book_id_to_title(book_no)
-    return render_template('/table_book.html', title='My Page', rows=rows, book_title=book_title,
+    return render_template('/table_book.html', title=page_title, rows=rows, book_title=book_title,
                            all_book_titles=all_book_titles, all_translations_names=all_translations_names)
 
 
@@ -57,7 +53,7 @@ def table_book_chapter(table, book_no, chapter_no):
     cursor.execute('SELECT * FROM {} WHERE b = {} AND c = {} AND t IS NOT NULL;'.format(table, book_no, chapter_no))
     rows = cursor.fetchall()
     book_title = book_id_to_title(book_no)
-    return render_template('/table_book.html', title='My Page', rows=rows, book_title=book_title,
+    return render_template('/table_book.html', title=page_title, rows=rows, book_title=book_title,
                            all_book_titles=all_book_titles, all_translations_names=all_translations_names)
 
 
@@ -70,7 +66,7 @@ def table_book_chapter_verse(table, book_no, chapter_no, verse_no):
     rows = cursor.fetchall()
     book_title = book_id_to_title(book_no)
     rows_len = len(rows)
-    return render_template('/table_book.html', title='My Page', rows=rows, book_title=book_title,
+    return render_template('/table_book.html', title=page_title, rows=rows, book_title=book_title,
                            all_book_titles=all_book_titles, all_translations_names=all_translations_names, len=rows_len)
 
 
