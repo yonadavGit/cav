@@ -1,16 +1,4 @@
 
-up-container {
-
-}
-
-down-container {
-
-}
-
-header {
-
-}
-
 .input-box {
     height: 33px;
     width: 110px;
@@ -52,8 +40,7 @@ form label {
 !important;
 }
 
-
-form {
+.form-nav {
     display: inline-block;
     margin-left: 30px;
     margin-top: 10px;
@@ -102,12 +89,6 @@ form {
     text-align: center;
 }
 
-#logo-image {
-    image: url('logo.png');
-    position: absolute; /* The child element is positioned absolutely */
-    z-index: 1;
-}
-
 body {
     min-height: 100vh;
 }
@@ -135,4 +116,66 @@ body {
 #verse-num {
     background-color: #dad2c2;
     text-align: center;
+}
+
+
+.login-page {
+    background-image: url('login_bg_blur.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#login-title {
+    font-size: 30px;
+    word-spacing: 5px;
+    margin-bottom: -25px;
+}
+
+#sign-in-btn {
+    background-color: #750612;
+    border: #750612;
+}
+
+.form-field {
+    margin-bottom: 15px;
+}
+
+.form-field label {
+    margin-bottom: 5px;
+}
+
+#card-container {
+    border: 2px solid #ccc;
+    border-radius: 12%;
+    padding-right: 20px;
+    padding-left: 20px;
+    opacity: 85%;
+    display: grid;
+    place-items: center;
+}
+
+.logo {
+    background-image: url('logo.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100px;
+}
+
+#sign-in-label {
+    display: block;
+    margin-top: 5px;
+}
+
+.black-title {
+    margin-top: 10px;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
 }

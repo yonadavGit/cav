@@ -39,6 +39,12 @@ def get_all_book_names():
 all_book_titles = get_all_book_names()
 
 
+def book_id_to_title(bookId):
+    cursor.execute('SELECT n FROM key_english WHERE b = {} AND n IS NOT NULL;'.format(bookId))
+    title = cursor.fetchall()
+    return title[0][0]
+
+
 @app.route('/table/<table>/<book_no>')
 def table_book(table, book_no):
     cursor.execute('SELECT * FROM {} WHERE b = {} AND t IS NOT NULL;'.format(table, book_no))
@@ -71,10 +77,27 @@ def table_book_chapter_verse(table, book_no, chapter_no, verse_no):
                            all_book_titles=all_book_titles, all_translations_names=all_translations_names, len=rows_len)
 
 
-def book_id_to_title(bookId):
-    cursor.execute('SELECT n FROM key_english WHERE b = {} AND n IS NOT NULL;'.format(bookId))
-    title = cursor.fetchall()
-    return title[0][0]
+@app.route('/like/<table>/<book_no>/<chapter_no>/<verse_no>')
+def verse_like(table, book_no, chapter_no, verse_no):
+    # Query the MySQL database and generate the HTML table
+    cursor.execute(
+        'SELECT * FROM {} WHERE b = {} AND c = {} AND v = {} AND t IS NOT NULL;'.format(table, book_no, chapter_no,
+                                                                                        verse_no))
+    rows = cursor.fetchall()
+    book_title = book_id_to_title(book_no)
+    rows_len = len(rows)
+    return render_template('/table_book.html', title=page_title, rows=rows, book_title=book_title,
+                           all_book_titles=all_book_titles, all_translations_names=all_translations_names, len=rows_len)
+
+
+@app.route('/login')
+def sign_in():
+    return render_template('/login.html', title=page_title)
+
+
+@app.route('/sign_up')
+def sign_up():
+    return render_template('/sign_up.html', title=page_title)
 
 
 # Start the web server
