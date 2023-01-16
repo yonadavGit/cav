@@ -9,6 +9,7 @@
             crossorigin="anonymous"></script>
 </head>
 <body id="bg-color">
+
 <header>
     <div id="header-image" class="jumbotron bg-cover text-white">
         <div class="container py-5 text-center header-text">
@@ -26,38 +27,47 @@
                 <option value="{{ trans }}">{{ trans }}</option>
                 {% endfor %}
             </select>
-        </form>
+<!--        </form>-->
 
-        <form class="form-nav">
+<!--        <form class="form-nav">-->
             <label>Book:&nbsp</label>
-            <select class="custom-select custom-select-lg">
+            <select id="aaa" class="custom-select custom-select-lg">
                 <option selected>Select book name</option>
                 {% for book in all_book_titles %}
                 <option value="{{ book }}">{{ book }}</option>
                 {% endfor %}
             </select>
+            <script>
+            document.getElementById("aaa").addEventListener("change", function(){
+             var selectedOption = this.value;
+              window.location.href = 'https://example.com/' + selectedOption;
+});
 
-        </form>
+</script>
 
-        <form class="form-nav">
+
+<!--        </form>-->
+
+<!--        <form class="form-nav">-->
             <label>Chapter:&nbsp</label>
             <input class="input-box" type="text">
 
-        </form>
+<!--        </form>-->
 
-        <form class="form-nav">
+<!--        <form class="form-nav">-->
             <label>Verse:&nbsp</label>
             <input class="input-box" type="text">
 
-        </form>
+<!--        </form>-->
 
-        <form class="form-nav">
+<!--        <form class="form-nav">-->
             <button id="search-btn" type="button">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
                      viewBox="0 0 16 16">
                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                 </svg>
             </button>
+
 
         </form>
 
