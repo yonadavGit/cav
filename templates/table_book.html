@@ -27,9 +27,9 @@
                 <option value="{{ trans }}">{{ trans }}</option>
                 {% endfor %}
             </select>
-<!--        </form>-->
+        </form>
 
-<!--        <form class="form-nav">-->
+        <form class="form-nav">
             <label>Book:&nbsp</label>
             <select id="aaa" class="custom-select custom-select-lg">
                 <option selected>Select book name</option>
@@ -37,30 +37,30 @@
                 <option value="{{ book }}">{{ book }}</option>
                 {% endfor %}
             </select>
-            <script>
-            document.getElementById("aaa").addEventListener("change", function(){
-             var selectedOption = this.value;
-              window.location.href = 'https://example.com/' + selectedOption;
-});
+            <!--            <script>-->
+            <!--                document.getElementById("aaa").addEventListener("change", function () {-->
+            <!--                    var selectedOption = this.value;-->
+            <!--                    window.location.href = 'https://example.com/' + selectedOption;-->
+            <!--                });-->
 
-</script>
+            <!--            </script>-->
 
 
-<!--        </form>-->
+        </form>
 
-<!--        <form class="form-nav">-->
+        <form class="form-nav">
             <label>Chapter:&nbsp</label>
             <input class="input-box" type="text">
 
-<!--        </form>-->
+        </form>
 
-<!--        <form class="form-nav">-->
+        <form class="form-nav">
             <label>Verse:&nbsp</label>
             <input class="input-box" type="text">
 
-<!--        </form>-->
+        </form>
 
-<!--        <form class="form-nav">-->
+        <form class="form-nav">
             <button id="search-btn" type="button">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
                      viewBox="0 0 16 16">
@@ -89,7 +89,19 @@
         {% endif %}
         <tr>
             <td id="verse-num">{{ row[3] }}</td>
-            <td>{{ row[4] }}</td>
+            <td>{{ row[4] }}
+
+                <like>
+                    <label id="like-amount">2</label>
+                    <svg id="like-btn" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="bi bi-heart-fill"
+                         viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                              d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                    </svg>
+
+                </like>
+            </td>
         </tr>
         {% endfor %}
     </table>

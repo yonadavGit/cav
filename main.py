@@ -8,8 +8,8 @@ import jinja2
 page_title = "Converse about the Verse"
 
 # Connect to the MySQL database
-cnx = mysql.connector.connect(user='root', password='1234',
-                              host='localhost', database='bibels')
+cnx = mysql.connector.connect(user='root', password='root',
+                              host='localhost', database='converseabouttheverse')
 cursor = cnx.cursor()
 
 # Create the Flask app
@@ -46,16 +46,17 @@ def book_id_to_title(bookId):
 
 
 def book_title_to_id(bookTitle):
-    return all_translations_names.index(bookTitle)+1
+    return all_book_titles.index(bookTitle) + 1
 
 
 def translation_name_to_id(translation):
-    return all_book_titles.index(bookTitle)+1
+    return all_translations_names.index(translation) + 1
+
 
 @app.route('/table/<table>/<book_no>')
 def table_book(table, book_no):
-    if table[0 : 1] != 't_' :
-        table = str(translation_name_to_id(table))
+    # if table[0 : 1] != 't_' :
+    #     table = str(translation_name_to_id(table))
     if not book_no.isnumeric():
         book_no = str(book_title_to_id(book_no))
     cursor.execute('SELECT * FROM {} WHERE b = {} AND t IS NOT NULL;'.format(table, book_no))
