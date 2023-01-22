@@ -65,6 +65,18 @@ def liked_verses(user, table):
     return render_template('/table_book.html', title=page_title, rows=rows, book_title="verses liked by "+ user,
                            all_book_titles=all_book_titles, all_translations_names=all_translations_names)
 
+@app.route('/search/<table>/<word>')
+def search(table, word):
+    # if table[0 : 1] != 't_' :
+    #     table = str(translation_name_to_id(table))
+    # if not book_no.isnumeric():
+    #     book_no = str(book_title_to_id(book_no))
+    cursor.execute('SELECT * FROM {} WHERE t LIKE "%{}%";'.format(table, word))
+    rows = cursor.fetchall()
+    # book_title = book_id_to_title(book_no)
+    return render_template('/table_book.html', title=page_title, rows=rows, book_title='Search results for: "'+ word + '"',
+                           all_book_titles=all_book_titles, all_translations_names=all_translations_names)
+
 @app.route('/table/<table>/<book_no>')
 def table_book(table, book_no):
     # if table[0 : 1] != 't_' :
