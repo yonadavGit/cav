@@ -8,8 +8,8 @@ import jinja2
 page_title = "Converse about the Verse"
 
 # Connect to the MySQL database
-cnx = mysql.connector.connect(user='root', password='root',
-                              host='localhost', database='converseabouttheverse')
+cnx = mysql.connector.connect(user='root', password='1234',
+                              host='localhost', database='bibels')
 cursor = cnx.cursor()
 
 # Create the Flask app
@@ -52,6 +52,18 @@ def book_title_to_id(bookTitle):
 def translation_name_to_id(translation):
     return all_translations_names.index(translation) + 1
 
+@app.route('/liked/<user>/<table>/')
+def liked_verses(user, table):
+    # if table[0 : 1] != 't_' :
+    #     table = str(translation_name_to_id(table))
+    # if not book_no.isnumeric():
+    #     book_no = str(book_title_to_id(book_no))
+    likes_table = user+"_verses"
+    cursor.execute('SELECT * FROM {} WHERE id IN (SELECT id_verse FROM {});'.format(table, likes_table))
+    rows = cursor.fetchall()
+    # book_title = book_id_to_title(book_no)
+    return render_template('/table_book.html', title=page_title, rows=rows, book_title="verses liked by "+ user,
+                           all_book_titles=all_book_titles, all_translations_names=all_translations_names)
 
 @app.route('/table/<table>/<book_no>')
 def table_book(table, book_no):
