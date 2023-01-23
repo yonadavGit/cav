@@ -92,7 +92,7 @@ def table_book(table, book_no):
 
 @app.route('/table/<table>/<book_no>/<chapter_no>')
 def table_book_chapter(table, book_no, chapter_no):
-    if table[0: 1] != 't_':
+    if table[0: 2] != 't_':
         table = str(translation_name_to_id(table))
 
     if not book_no.isnumeric():
