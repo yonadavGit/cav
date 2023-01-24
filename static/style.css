@@ -118,6 +118,16 @@ body {
     text-align: center;
 }
 
+#book-name-likes{
+    background-color: #dad2c2;
+    text-align: center;
+    width: 30%;
+}
+
+#likes-per-book{
+    text-align: center;
+    width: 70%;
+}
 
 .login-page {
     background-image: url('login_bg_blur.jpg');
@@ -193,4 +203,17 @@ body {
 like {
     float: right;
     margin-right: 7px;
+}
+
+.likes-table-title {
+    text-align: center;
+    font-size: 1.23em;
+    color: black;
+    font-family: Assistant, sans-serif;
+    font-weight: bold;
+
+}
+
+#color{
+   background-color: #dad2c2;
 }

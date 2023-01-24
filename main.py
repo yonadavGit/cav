@@ -8,8 +8,8 @@ import jinja2
 page_title = "Converse about the Verse"
 
 # Connect to the MySQL database
-cnx = mysql.connector.connect(user='root', password='1234',
-                              host='localhost', database='bibels')
+cnx = mysql.connector.connect(user='root', password='root',
+                              host='localhost', database='converseabouttheverse')
 cursor = cnx.cursor()
 
 # Create the Flask app
@@ -52,30 +52,27 @@ def book_title_to_id(bookTitle):
 def translation_name_to_id(translation):
     return all_translations_names.index(translation) + 1
 
-@app.route('/liked/<user>/<table>/')
-def liked_verses(user, table):
+
+@app.route('/liked/<_user>/<table>/')
+def liked_verses(_user, table):
     # if table[0 : 1] != 't_' :
     #     table = str(translation_name_to_id(table))
     # if not book_no.isnumeric():
     #     book_no = str(book_title_to_id(book_no))
-    likes_table = user+"_verses"
-    cursor.execute('SELECT * FROM {} WHERE id IN (SELECT id_verse FROM {});'.format(table, likes_table))
+    cursor.execute('SELECT * FROM {} WHERE id IN (SELECT id_verse FROM likes WHERE user="{}");'.format(table, _user))
     rows = cursor.fetchall()
-    # book_title = book_id_to_title(book_no)
-    return render_template('/table_book.html', title=page_title, rows=rows, book_title="verses liked by "+ user,
+    return render_template('/table_book.html', title=page_title, rows=rows, book_title="verses liked by " + _user,
                            all_book_titles=all_book_titles, all_translations_names=all_translations_names)
+
 
 @app.route('/search/<table>/<word>')
 def search(table, word):
-    # if table[0 : 1] != 't_' :
-    #     table = str(translation_name_to_id(table))
-    # if not book_no.isnumeric():
-    #     book_no = str(book_title_to_id(book_no))
     cursor.execute('SELECT * FROM {} WHERE t LIKE "%{}%";'.format(table, word))
     rows = cursor.fetchall()
-    # book_title = book_id_to_title(book_no)
-    return render_template('/table_book.html', title=page_title, rows=rows, book_title='Search results for: "'+ word + '"',
+    return render_template('/table_book.html', title=page_title, rows=rows,
+                           book_title='Search results for: "' + word + '"',
                            all_book_titles=all_book_titles, all_translations_names=all_translations_names)
+
 
 @app.route('/table/<table>/<book_no>')
 def table_book(table, book_no):
@@ -87,6 +84,30 @@ def table_book(table, book_no):
     rows = cursor.fetchall()
     book_title = book_id_to_title(book_no)
     return render_template('/table_book.html', title=page_title, rows=rows, book_title=book_title,
+                           all_book_titles=all_book_titles, all_translations_names=all_translations_names)
+
+
+@app.route('/liked/<table>/<book_no>')
+def liked_verses_by_book(table, book_no):
+    book_title = book_id_to_title(book_no)
+    cursor.execute('SELECT * FROM {} WHERE b={} AND id IN (SELECT id_verse FROM likes);'.format(table, book_no))
+
+    rows = cursor.fetchall()
+    return render_template('/table_book.html', title=page_title, rows=rows,
+                           book_title="verses liked in book " + book_title,
+                           all_book_titles=all_book_titles, all_translations_names=all_translations_names)
+
+
+#
+# SELECT n, COUNT (*) AS num_of_comments FROM Comment AS c JOIN (SELECT TNC. ID,
+# key_english.n FROM TNC JOIN key_english ON TNC.b = key_english.b)
+# ON c. Verse_ID = TNC. ID
+# WHERE Comment_text IS NOT NULL GROUP BY key_english.n;
+@app.route('/liked/amount/<table>')
+def num_likes_by_book(table):
+    cursor.execute('SELECT n, COUNT(*) FROM (({} AS bible JOIN likes ON bible.id = likes.id_verse ) JOIN key_english ON bible.b = key_english.b ) GROUP BY key_english.n  ;'.format(table))
+    rows = cursor.fetchall()
+    return render_template('/table_book_amount.html', title=page_title, rows=rows, book_title="likes per book",
                            all_book_titles=all_book_titles, all_translations_names=all_translations_names)
 
 
