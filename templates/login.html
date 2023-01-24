@@ -20,7 +20,7 @@
             <div class="logo"></div>
             <label class="black-title">Login</label>
 
-            <form>
+            <form action="/signin" method="post">
                 <div class="form-group form-field">
                     <label for="username">Username:</label>
                     <input type="text" class="form-control" id="username" name="username" required
@@ -31,9 +31,8 @@
                     <input type="password" class="form-control" id="password" name="password" required
                            placeholder="password">
                 </div>
-                <a href="liked/osnat/t_kjv/">
-                <div id="sign-in-btn"  class="btn btn-primary">Login</div>
-                  </a>
+
+                <button type="submit" id="sign-in-btn" class="btn btn-primary">Login</button>
                 <div id="sign-in-label">
                     <label>Don't have an account yet?
                         <a href="sign_up"> Sign Up</a>

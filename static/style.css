@@ -41,12 +41,9 @@ form label {
 }
 
 .form-nav {
-    display: inline-block;
-    margin-left: 30px;
     margin-top: 10px;
     font-size: 1.4em;
     font-family: Assistant, sans-serif;
-    height: max-content;
 }
 
 .navbar label {
@@ -176,6 +173,13 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     height: 100px;
+}
+.tatiana {
+    background-image: url('tatiana.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 400px;
 }
 
 #sign-in-label {

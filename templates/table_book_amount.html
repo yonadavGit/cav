@@ -19,58 +19,38 @@
 </header>
 <up-container>
     <nav id="navbar-selection" class="navbar navbar-light bg-light">
-        <form class="form-nav">
+        <form class="form-nav" action="/navbar" method="post">
             <label>Translation:&nbsp</label>
-            <select class="custom-select custom-select-lg">
+            <select class="custom-select custom-select-lg" name="translation">
                 <option selected>Select bible translation</option>
                 {% for trans in all_translations_names %}
                 <option value="{{ trans }}">{{ trans }}</option>
                 {% endfor %}
             </select>
-        </form>
 
-        <form class="form-nav">
+
             <label>Book:&nbsp</label>
-            <select id="aaa" class="custom-select custom-select-lg">
+            <select class="custom-select custom-select-lg" name="book">
                 <option selected>Select book name</option>
                 {% for book in all_book_titles %}
                 <option value="{{ book }}">{{ book }}</option>
                 {% endfor %}
             </select>
-            <!--            <script>-->
-            <!--                document.getElementById("aaa").addEventListener("change", function () {-->
-            <!--                    var selectedOption = this.value;-->
-            <!--                    window.location.href = 'https://example.com/' + selectedOption;-->
-            <!--                });-->
 
-            <!--            </script>-->
-
-
-        </form>
-
-        <form class="form-nav">
             <label>Chapter:&nbsp</label>
-            <input class="input-box" type="text">
+            <input class="input-box" type="text" name="chapter">
 
-        </form>
-
-        <form class="form-nav">
             <label>Verse:&nbsp</label>
-            <input class="input-box" type="text">
+            <input class="input-box" type="text" name="verse">
 
-        </form>
-
-        <form class="form-nav">
-            <button id="search-btn" type="button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+            <button id="search-btn" type="submit">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-search"
                      viewBox="0 0 16 16">
                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                 </svg>
             </button>
-
-
         </form>
-
     </nav>
 
     <div id="book-title">
@@ -81,8 +61,8 @@
     <table class="table table-hover styled-table">
         <tr id="color">
             <td class="likes-table-title">book</td>
-            <td class="likes-table-title"> number of likes </td>
-            </tr>
+            <td class="likes-table-title"> number of likes</td>
+        </tr>
         {% for row in rows %}
         <tr>
             <td id="book-name-likes">{{ row[0] }}</td>
