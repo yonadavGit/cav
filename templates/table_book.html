@@ -11,7 +11,17 @@
 <body id="bg-color">
 
 <header>
+
     <div id="header-image" class="jumbotron bg-cover text-white">
+        <form action="/return_home" method="post">
+            <button id="home-btn" type="submit">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-house-door"
+                     viewBox="0 0 16 16">
+                    <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146ZM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5Z"/>
+                </svg>
+            </button>
+        </form>
         <div class="container py-5 text-center header-text">
             <h1 class="display-4 font-weight-bold">Converse about the Verse</h1>
         </div>
@@ -19,38 +29,47 @@
 </header>
 <up-container>
     <nav id="navbar-selection" class="navbar navbar-light bg-light">
-
         <form class="form-nav" action="/navbar" method="post">
-            <label>Translation:&nbsp</label>
-            <select class="custom-select custom-select-lg" name="translation">
-                <option selected>Select bible translation</option>
-                {% for trans in all_translations_names %}
-                <option value="{{ trans }}">{{ trans }}</option>
-                {% endfor %}
-            </select>
+            <form-nav-item>
+                <label>Translation:&nbsp</label>
+                <select class="custom-select custom-select-lg" name="translation">
+                    <option selected>Select bible translation</option>
+                    {% for trans in all_translations_names %}
+                    <option value="{{ trans }}">{{ trans }}</option>
+                    {% endfor %}
+                </select>
+            </form-nav-item>
 
+            <form-nav-item>
+                <label>Book:&nbsp</label>
+                <select class="custom-select custom-select-lg" name="book">
+                    <option selected>Select book name</option>
+                    {% for book in all_book_titles %}
+                    <option value="{{ book }}">{{ book }}</option>
+                    {% endfor %}
+                </select>
+            </form-nav-item>
 
-            <label>Book:&nbsp</label>
-            <select class="custom-select custom-select-lg" name="book">
-                <option selected>Select book name</option>
-                {% for book in all_book_titles %}
-                <option value="{{ book }}">{{ book }}</option>
-                {% endfor %}
-            </select>
+            <form-nav-item>
+                <label>Chapter:&nbsp</label>
+                <input class="input-box" type="text" name="chapter">
+            </form-nav-item>
 
-            <label>Chapter:&nbsp</label>
-            <input class="input-box" type="text" name="chapter">
+            <form-nav-item>
+                <label>Verse:&nbsp</label>
+                <input class="input-box" type="text" name="verse">
+            </form-nav-item>
 
-            <label>Verse:&nbsp</label>
-            <input class="input-box" type="text" name="verse">
+            <form-nav-item>
+                <button id="search-btn" type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="bi bi-search"
+                         viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                    </svg>
+                </button>
+            </form-nav-item>
 
-            <button id="search-btn" type="submit">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                     class="bi bi-search"
-                     viewBox="0 0 16 16">
-                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                </svg>
-            </button>
         </form>
     </nav>
 

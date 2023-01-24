@@ -40,10 +40,21 @@ form label {
 !important;
 }
 
+#navbar-buttons {
+    color: white;
+    background-image: linear-gradient(to bottom,#9b653d, #8B4513);
+    justify-content: center;
+!important;
+}
+
 .form-nav {
     margin-top: 10px;
     font-size: 1.4em;
     font-family: Assistant, sans-serif;
+}
+
+form-nav-item{
+    margin-left: 25px;
 }
 
 .navbar label {
@@ -62,6 +73,21 @@ form label {
     align-items: center;
     transition: 0.4s;
     border-color: navajowhite;
+}
+
+#home-btn {
+    color: black;
+    float: left;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+    border-color: navajowhite;
+    margin:15px;
 }
 
 #header-image {
@@ -198,6 +224,7 @@ body {
     float: right;
 }
 
+
 #like-amount {
     float: right;
     margin-left: 7px;
@@ -220,4 +247,8 @@ like {
 
 #color{
    background-color: #dad2c2;
+}
+
+.home-nav-item{
+    margin-left: 70px;
 }
