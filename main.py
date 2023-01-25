@@ -149,7 +149,7 @@ def userliked(table, book_no, chapter_no, verse_no) :
         'SELECT user, comment FROM comments WHERE id_verse = {};'.format(vers[0][0]))
     rows = cursor.fetchall()
     return render_template('/userliked.html', title=page_title, vers=vers[0], rows=rows, book_title=book_title,
-                           all_book_titles=all_book_titles, all_translations_names=all_translations_names,table=table)
+                           all_book_titles=all_book_titles, all_translations_names=all_translations_names, table=table)
 
 
 @app.route('/login', methods=['GET'])
@@ -228,13 +228,21 @@ def return_home() :
 
 @app.route('/like', methods=['POST'])
 def like() :
-    global table_likes_size
-    table_likes_size += 1
     dynamic_variable = request.form.get("my_variable")
     cursor.execute(
-        'INSERT INTO likes (id, user, id_verse) VALUES ("{}", "{}","{}");'.format(table_likes_size, global_user,
-                                                                                  dynamic_variable))
-    return redirect(f'/home/{global_user}/t_kjv')
+        'SELECT 1 FROM likes WHERE user="{}" AND id_verse = "{}" AND EXISTS (SELECT 1 FROM likes WHERE user="{}" AND id_verse = "{}");'.format(
+            global_user,
+            dynamic_variable, global_user, dynamic_variable))
+    result = cursor.fetchone()
+    if result :
+        return redirect(f'/home/{global_user}/t_kjv')
+    else :
+        global table_likes_size
+        table_likes_size += 1
+        cursor.execute(
+            'INSERT INTO likes (id, user, id_verse) VALUES ("{}", "{}","{}");'.format(table_likes_size, global_user,
+                                                                                      dynamic_variable))
+        return redirect(f'/home/{global_user}/t_kjv')
 
 
 @app.route('/dislike', methods=['POST'])
