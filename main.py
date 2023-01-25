@@ -9,7 +9,7 @@ page_title = "Converse about the Verse"
 
 # Connect to the MySQL database
 cnx = mysql.connector.connect(user='root', password='root',
-                              host='localhost', database='converseabouttheverse')
+                              host='localhost', database='bibels', port=3305)
 cursor = cnx.cursor()
 
 # Create the Flask app
@@ -58,6 +58,8 @@ def translation_name_to_id(translation):
 def liked_verses(_user, table):
     cursor.execute('SELECT * FROM {} WHERE id IN (SELECT id_verse FROM likes WHERE user="{}");'.format(table, _user))
     rows = cursor.fetchall()
+    global global_user
+    global_user = _user
     return render_template('/main_page.html', title=page_title, rows=rows, book_title="verses liked by " + _user,
                            all_book_titles=all_book_titles, all_translations_names=all_translations_names)
 
@@ -143,6 +145,13 @@ def verse_like(table, book_no, chapter_no, verse_no):
     return render_template('/table_book.html', title=page_title, rows=rows, book_title=book_title,
                            all_book_titles=all_book_titles, all_translations_names=all_translations_names, len=rows_len)
 
+@app.route('/liked/<verse_id>')
+def userliked(verse_id):
+    cursor.execute(
+        'SELECT user, comment FROM comments WHERE id_verse = {};'.format(verse_id))
+    rows = cursor.fetchall()
+    return render_template('/userliked.html', title=page_title, rows=rows, book_title="likes per book",
+                           all_book_titles=all_book_titles, all_translations_names=all_translations_names)
 
 @app.route('/home', methods=['GET'])
 def tatiana():
@@ -220,6 +229,29 @@ def search_word():
 def return_home():
     return redirect(f'/home/{global_user}/t_kjv')
 
+@app.route('/like', methods=['POST'])
+def like():
+    cursor.execute("SELECT COUNT(*) FROM likes")
+    result = cursor.fetchone()
+    dynamic_variable = request.form.get("my_variable")
+    cursor.execute('INSERT INTO likes (id, user, id_verse) VALUES ("{}", "{}","{}");'.format(result[0] +1,global_user ,dynamic_variable))
+    return redirect(f'/home/{global_user}/t_kjv')
+
+@app.route('/dislike', methods=['POST'])
+def dislike():
+    cursor.execute("SELECT COUNT(*) FROM likes")
+    result = cursor.fetchone()
+    dynamic_variable = request.form.get("my_variable")
+    cursor.execute('DELETE FROM likes WHERE user = "{}" AND id_verse = "{}";'.format(global_user, dynamic_variable))
+    return redirect(f'/home/{global_user}/t_kjv')
+
+@app.route('/wholiked', methods=['POST'])
+def wholiked():
+    cursor.execute("SELECT COUNT(*) FROM likes")
+    result = cursor.fetchone()
+    dynamic_variable = request.form.get("my_variable")
+    cursor.execute('INSERT INTO likes (id, user, id_verse) VALUES ("{}", "{}","{}");'.format(result[0] +1,global_user ,dynamic_variable))
+    return redirect(f'/home/{global_user}/t_kjv')
 # Start the web server
 if __name__ == '__main__':
     app.run()
