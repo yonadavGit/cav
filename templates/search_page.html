@@ -71,6 +71,30 @@
 
         </form>
     </nav>
+    <nav id="navbar-buttons" class="navbar navbar-light bg-light">
+        <form class="home-nav-item" method="post" action="/likes_per_book">
+            <button type="submit" id="sign-in-btn" class="btn btn-primary">Likes per book</button>
+        </form>
+
+        <form class="home-nav-item" method="post" action="/liked_verse">
+            <label>Liked verses in a book:&nbsp</label>
+            <select class="custom-select custom-select-lg" name="book">
+                <option selected>Select book name</option>
+                {% for book in all_book_titles %}
+                <option value="{{ book }}">{{ book }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit" id="sign-in-btn" class="btn btn-primary">search</button>
+
+
+        </form>
+
+        <form class="home-nav-item" method="post" action="/search_word">
+            <label>Search verses by word:&nbsp</label>
+            <input class="input-box" type="text" name="word" placeholder="word">
+            <button type="submit" id="sign-in-btn" class="btn btn-primary">search</button>
+        </form>
+    </nav>
 
     <div id="book-title">
         {{ book_title }}
@@ -78,14 +102,26 @@
 </up-container>
 <down-container>
     <table class="table table-hover styled-table">
-        <tr id="color">
-            <td class="likes-table-title">book</td>
-            <td class="likes-table-title"> number of likes</td>
-        </tr>
         {% for row in rows %}
         <tr>
-            <td id="book-name-likes">{{ row[0] }}</td>
-            <td id="likes-per-book">{{ row[1] }}
+            <td id="verse-num">{{all_book_titles[row[1]],row[2], row[3] }}</td>
+            <td>{{ row[4] }}
+
+                <form action="/like" method="post">
+                    <like>
+                        <label id="like-amount"></label>
+                        <input type="hidden" name="my_variable" value="{{row[0]}}">
+                        <button>
+                            <svg id="like-btn" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                 fill="currentColor"
+                                 class="bi bi-heart-fill"
+                                 viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                            </svg>
+                        </button>
+                    </like>
+                </form>
             </td>
         </tr>
         {% endfor %}

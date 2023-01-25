@@ -73,7 +73,7 @@
     </nav>
     <nav id="navbar-buttons" class="navbar navbar-light bg-light">
         <form class="home-nav-item" method="post" action="/likes_per_book">
-            <button type="submit" id="sign-in-btn" class="btn btn-primary">Likes per a book</button>
+            <button type="submit" id="sign-in-btn" class="btn btn-primary">Likes per book</button>
         </form>
 
         <form class="home-nav-item" method="post" action="/liked_verse">
@@ -103,19 +103,13 @@
 <down-container>
     <table class="table table-hover styled-table">
         {% for row in rows %}
-        {% if row[3] == 1 or len==1 %}
-        <tr id="chapter-title">
-            <td> Chapter</td>
-            <td id="chapter-num">{{ row[2] }}</td>
-        </tr>
-        {% endif %}
         <tr>
-            <td id="verse-num">{{ row[3] }}</td>
+            <td id="verse-num">{{all_book_titles[row[1]],row[2], row[3] }}</td>
             <td>{{ row[4] }}
 
                 <form action="/dislike" method="post">
                     <like>
-                        <label id="like-amount">2</label>
+                        <label id="like-amount"></label>
                         <input type="hidden" name="my_variable" value="{{row[0]}}">
                         <button>
                             <svg id="like-btn" xmlns="http://www.w3.org/2000/svg" width="16" height="16"

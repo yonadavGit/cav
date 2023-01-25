@@ -3,7 +3,10 @@
     height: 33px;
     width: 110px;
 }
-
+.input-comment{
+    height: 100px;
+    width: 300px;
+}
 #book-title {
     text-align: center;
     font-size: 1.5em;
